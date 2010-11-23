@@ -137,6 +137,15 @@ module Campaigning
       response == 'True' ? true : false
     end
 
+    def self.get_single_subscriber(list_id, email, opts={})
+      response = @@soap.getSingleSubscriber(
+      :apiKey => opts[:apiKey] || CAMPAIGN_MONITOR_API_KEY,
+      :listID => list_id,
+      :emailAddress => email
+      )
+      response = handle_response response.subscribers_GetSingleSubscriberResult
+    end
+
 
     protected
 
